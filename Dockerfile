@@ -6,4 +6,4 @@ RUN go build -o export-variables .
 
 FROM scratch
 COPY --from=build export-variables /
-CMD ["/main"]
+CMD ["/export-variables"]
