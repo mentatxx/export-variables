@@ -5,5 +5,5 @@ WORKDIR /app
 RUN go build -o export-variables . 
 
 FROM scratch
-COPY --from=build export-variables /
+COPY --from=build /app/export-variables /
 CMD ["/export-variables"]
