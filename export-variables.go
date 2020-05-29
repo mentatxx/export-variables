@@ -19,7 +19,7 @@ func check(e error) {
 }
 
 func parseArguments(fileName *string, outputType *string) {
-	flag.StringVar(outputType, "type", "json", "Output type: json (default), assignment")
+	flag.StringVar(outputType, "type", "json", "Output type: json (default), assignment, script")
 	flag.StringVar(fileName, "file", "", "File name: Default empty - console")
 	flag.Parse()
 }
@@ -55,6 +55,10 @@ func environmentToJSON() string {
 	return string(content)
 }
 
+func environmentToScript() string {
+	return fmt.Sprintf("<script>\nwindow.environment=%s;\n</script>\n", environmentToJSON())
+}
+
 func main() {
 	parseArguments(&fileName, &outputType)
 	var content string = ""
@@ -63,6 +67,8 @@ func main() {
 		content = environmentToAssignment()
 	case "json":
 		content = environmentToJSON()
+	case "script":
+		content = environmentToScript()
 	default:
 		panic("Invalid output type")
 	}
