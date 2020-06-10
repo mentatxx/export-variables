@@ -1,4 +1,7 @@
 {
   "editor.codeActionsOnSave": ["source.format"],
+  "[markdown]": {
+    "editor.formatOnSave": false
+  },
   "launch": {}
 }
